@@ -1,75 +1,104 @@
-const carrito = document.getElementById(  `carrito` );
-const elemento1 = document.getElementById(`lista-1`);
-const lista = document.querySelector(  `#lista-carrito tbody`);
-const VaciarCarritoBtn = document.getElementById(  `Vaciar-carrito`);
+// Estas serian las variables 
+const carrito = document.querySelector('#carrito tbody');
+const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
+const listaProductos = document.querySelector('.products-content');
+let articulosCarrito = [];
 
-cargarEventListeners();
+// Aqui se cargan los eventos
+document.addEventListener('DOMContentLoaded', () => {
+    listaProductos.addEventListener('click', agregarProducto);
+    carrito.addEventListener('click', eliminarProducto);
+    vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+});
 
-function cargarEventListeners() {
-
-    elemento1.addEventListener(`click", comprarElemento`);
-    carrito.addEventListener(  `click", eliminarElemento`);
-    VaciarCarritoBtn.addEventListener(  `click",VaciarCarrito`);
-
-}
-
-function comprarElemento(e) {
-    e.preventDefault();
-    if(e.target.classList.contains(  `agregar-carrito` )){
-        const elemento = e.target.parentElement.parentElement;
-        leerDatosElemento(elemento);
+// Esta seria la funcion que agrega productos al carrito 
+function agregarProducto(e) {
+    if (e.target.classList.contains('agregar-carrito')) {
+        const productoSeleccionado = e.target.parentElement.parentElement;
+        leerDatosProducto(productoSeleccionado);
     }
 }
 
-function leerDatosElemento(elemento) {
-    const infoElemento = {
-        imagen: elemento.querySelector(  `img`).src,
-        titulo: elemento.querySelector(`h3`).textcontent,
-        precio: elemento.querySelector(  `.precio`).textcontent,
-        id: elemento.querySelector(  `a`).getAttribute(`data-id`)
+// Esto lee los datos osea el producto
+function leerDatosProducto(producto) {
+    const infoProducto = {
+        imagen: producto.querySelector('img').src,
+        nombre: producto.querySelector('h3').textContent,
+        precio: producto.querySelector('.precio').textContent,
+        id: producto.querySelector('a').getAttribute('data-id'),
+        cantidad: 1
+    };
+
+    // Verifica si el producto ya existe en el carrito
+    const existe = articulosCarrito.some(articulo => articulo.id === infoProducto.id);
+    if (existe) {
+        const productos = articulosCarrito.map(articulo => {
+            if (articulo.id === infoProducto.id) {
+                articulo.cantidad++;
+                return articulo;
+            } else {
+                return articulo;
+            }
+        });
+        articulosCarrito = [...productos];
+    } else {
+        // Agregar producto al arreglo de carrito
+        articulosCarrito = [...articulosCarrito, infoProducto];
     }
-    insertarcarrit(infoElemento);
+
+    // Insertar carrito en el HTML
+    carritoHTML();
 }
 
-function insertarcarrito(elemento) {
-    const row = document.createElement(`tr`);
-    row.innerHTML = `
-        <td>
-            <img src="${elemento.imagen}" width=100
-        </td>
-        
-        <td>
-            ${elemento.titulo}
-        </td>
-        
-        <td>
-            ${elemento.precio}
-        </td>
-        
-        <td>
-            <a herf="#" class="borrar" data-id="${elemento.id}" >x</a>
-        <td>    
-    
-    
-    
-    `;
-    lista.appendChild(row);
+// Muestra los productos en el carrito en el HTML
+function carritoHTML() {
+    // Limpiar el HTML
+    limpiarHTML();
 
+    // ejecuta el carrito y genera el HTML
+    articulosCarrito.forEach(producto => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td><img src="${producto.imagen}" width="100"></td>
+            <td>${producto.nombre}</td>
+            <td>${producto.precio}</td>
+            <td>${producto.cantidad}</td>
+            <td>
+                <a href="#" class="borrar-producto" data-id="${producto.id}">X</a>
+            </td>
+        `;
 
+        // Agrega el HTML del carrito en el tbody
+        carrito.appendChild(row);
+    });
 }
 
-function eliminarElemento(e) {
-    e.preventDefault();
-    let elemento,
-        elementoid;
-        if(e.target.classList.contains(`borrar`)) {
-            e.target = e.target.parentElement.parentElement;
-            elementoid = elemento.querySelector(`a`).getAttribute(`data-id`);
-        }
-}
+// Elimina producto del carrito
+function eliminarProducto(e) {
+    if (e.target.classList.contains('borrar-producto')) {
+        const productoId = e.target.getAttribute('data-id');
+        
+        // Elimina del arreglo de carrito
+        articulosCarrito = articulosCarrito.filter(producto => producto.id !== productoId);
 
-function VaciarCarrito() {
-    while(lista.firstChild) {
-        (lista.removeChild)(lista.firstChild);
+        // Actualiza el carrito en el HTML
+        carritoHTML();
     }
-}   return false;
+}
+
+// Vaciar el carrito
+function vaciarCarrito() {
+    articulosCarrito = []; // Reseteamos el arreglo
+    limpiarHTML(); // Eliminamos todo el HTML
+}
+
+// Limpia el HTML del carrito
+function limpiarHTML() {
+    // Forma lenta
+    // carrito.innerHTML = '';
+
+    // Forma rápida 
+    while (carrito.firstChild) {
+        carrito.removeChild(carrito.firstChild);
+    }
+}

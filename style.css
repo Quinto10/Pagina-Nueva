@@ -1,350 +1,177 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*/
-.bebas-neue-regular {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-*/
-
-
-* {
-    margin: 0;
-    padding : 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    list-style: none;
-
-} 
 
 body {
-    font-family: "poppins", sans-serif;
-    background-color: #18171d;
-}    
-
-img {
-    max-width: 100%;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-.container {
-    max-width: 1200%;
-    margin: 0 auto;
-}
 
 .header {
-    display: flex;
-    align-items: center;
-    min-width: 80vh;
-    background:linear-gradient(
-        90deg,
-        rgba(47,28,42,1) 0%,
-        rgba(45,54,61,1) 50%,
-        rgba(19,41,65,1) 100%
-    );
-
-
-
+    background-color: #111; 
+    color: #fff;
+    padding: 20px 0;
 }
 
 .menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
-    align-content: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-    font-size: 25px;
-    color: #BA8250;
-    text-transform: uppercase;
-    font-weight: 800;
-
-
-
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
 }
 
-.menu .navbar ul li {
-    position: relative;
-    float: left;
-
-}
-
-.menu .navbar ul li a {
-    font-size: 17px;
-    padding: 20px;
-    color: #dfdde0;
-    text-transform: uppercase;
-    display: block;
-}
-
-.menu .navbar ul li a:hover {
-    color: #BA8250;
-}
-
-#menu {
-    display: none;
-}
-
-.menu icono {
-    width: 25px;
-
-}
-
-.menu label {
-    cursor: pointer;
-    display: none;
-}
-
-.submenu {
-    position: relative;
-}
-
-.submenu #carrito {
-    display: none;
-}
-
-.submenu:hover #carrito {
-    display: block;
-    position: absolute;
-    right: 0;
-    backdrop-filter: blur(10px);
-    top:100%;
-    z-index: 1;
-    background-color: #4e4b5076;
-    padding: 20px;
-    min-width: 400px;
-}
-
-table {
-    width: 100%;
-
-}
-
-th, td {
-    color:#dfdde0;
-}
-
-.borrar {
-    background-color: #BA8250;
-    border-radius: 50%;
-    padding: 5px 10px;
-    color: #dfdde0;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.header-txt {
-    text-align: center;
-
-}
-
-.header-txt h1 {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 100px;
-    color: #838586;
-}
-
-.header-txt p {
-    font-size: 16px;
-    color: #dfdde0;
-    text-transform: capitalize;
-    margin-bottom: 35px;
-}
-
-.header-txt img {
-    width: 700px;
-    display: block;
-}
-
-.btn-1, .btn-2 {
-    display: inline-block;
-    padding: 13px 25px;
-    background-color: #BA8250;
-    color: #dfdde0;
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 20px;
-    margin-top: 55%;
-}
-
-.about {
-    padding: 120px 0;
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
-    justify-content: space-between;
-
 }
 
-.about {
-    flex-basis: 50%;
+.navbar ul li {
+    margin-left: 20px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    color: #f39c12; 
+}
+
+#img-carrito {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+}
+
+
+.products {
+    background-color: #fff;
+    padding: 50px 0;
     text-align: center;
 }
 
-.about-img img {
-    width: 350%;
-
+.products h2 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 40px;
 }
 
-.about-txt {
-    flex-basis: 50%;
-}
-
-h2 {
-    color: #dfdde0;
-    font-size: 80px;
-    font-family: "Bebas Neue", sans-serif;
-    margin-bottom: 15px;
-}
-
-p {
-    font-size: 16px;
-    color: #dfdde0;
-}
-
-.produtcs {
-    padding: 0 0 200px 0;
-    color: #dfdde0;
-
-}
-
-.produtcs h2 {
-    margin-bottom: 50px;
-    
-}
-
-.produtcs-content {
+.products-content {
     display: grid;
-    grid-template-columns: repeat(3, ifr);
-    gap: 70px;
-
-
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: space-around;
 }
 
-h3 {
-    color: #dfdde0;
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 25px;
+.product {
+    background-color: #fff;
+    padding: 20px;
+    border: 2px solid #f39c12; 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.product img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.product-txt {
+    text-align: left;
+    margin-top: 10px;
+}
+
+.product h3 {
+    color: #111;
+    font-size: 20px;
+}
+
+.product .precio {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.agregar-carrito {
+    display: inline-block;
+    margin-top: 10px;
+    background-color: #f39c12; 
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.agregar-carrito:hover {
+    background-color: #22e643; 
+}
+
+
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+}
+
+.footer h3 {
+    font-size: 18px;
+    color: #f39c12;
     margin-bottom: 10px;
 }
 
-.precio {
-    color: #BA8250;
-    font-weight: 800;
-    padding: 10px 0;
-    margin-bottom:  10px;
+.footer ul {
+    list-style: none;
+    padding: 0;
 }
 
-.btn-2 {
-    margin: 0;
-    padding: 8px 35px;
+.footer ul li a {
+    color: #fff;
+    text-decoration: none;
 }
 
-.footer {
-    border-top: 1px solid #BA815065;
-    padding: 50px 0;
-    display: flex;
-    justify-content: space-between;
+.footer ul li a:hover {
+    color: #f39c12;
 }
 
-.link h3 {
-    font-size: 22px;
 
-
+.btn-1, .btn-2 {
+    background-color: #f39c12;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-.link a {
-    font-size: 16px;
-    color:#c0c0c1;
-    display: block;
-    margin-bottom: 15px;
+.btn-1:hover, .btn-2:hover {
+    background-color: #e67e22;
 }
 
-.link a hover {
-    color: #BA8250;
-
-}
-
-@media (max-width:991px) {
-    .menu {
-        padding: 20px;
-    }
-}
-
-.menu label {
-    display: initial;
-}
-
-.menu .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: #18171d;
-    display: none;
-}
-
-.menu .navbar ul li {
-    width: 100%;
-}
-
-#menu:checked ~ .navbar {
-    display: none;
-}
-
-.logo {
-    display: none;
-}
-
-.submenu :hover #carrito {
-    min-width: 340%;
-
-}
-
-.header {
-    min-height: 0vh;
-    padding: 100px 30px;
-}
-
-.header-txt {
-    text-align: center;
-}
-
-.header-txt h1 {
-    font-size: 90px;
-    line-height: 1;
-}
-
-.about {
-    padding: 30px;
-    flex-direction: column;
-    text-align: center;
-}
-
-.about-img {
-    order: 2;
-
-}
-
-.about-img img {
-    width: 250px;
-}
-
-.about-txt {
-    margin-bottom: 25px;
-}
-
-.produtcs {
-    padding: 30px;
-}
-
-.produtcs-content {
-    grid-template-columns: repeat(1,1fr);
-    gap: 30px;
-}
-
-.footer {
-    padding: 30px;
-    flex-direction: column;
-    text-align: center;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
