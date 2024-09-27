@@ -49,8 +49,9 @@ body {
 }
 
 #img-carrito {
-    width: 30px;
-    height: auto;
+    width: 55px;
+    height: 55px;
+    margin-top: 9px;
     cursor: pointer;
 }
 
